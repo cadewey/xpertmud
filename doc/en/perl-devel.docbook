@@ -1,0 +1,780 @@
+  <chapter id="perl_help">
+    <title>Perl Developer's Guide to Xpertmud</title>
+  <sect1 id="perl_help_Sharp">
+    <title>#</title>
+<para><programlisting>Synopsis: #()
+</programlisting></para><para>If you write a # at the beginning of a line then the line is processed by the perl interpreter. The statement is executed in global space, but be aware that because of the 'strict'-directive and the block-binding of the 'my'-keyword you're only able to define variables via the 'use vars'-directive.  </para><para><programlisting>Example:
+	Type into the input line:
+	#use vars qw/$firstVar $secondVar/
+	Now we've definied two variables globally
+	#$firstVar = new XMTextWindow()</programlisting></para>  </sect1>
+  <sect1 id="perl_help_activeWindow">
+    <title>activeWindow</title>
+<para><programlisting>Synopsis: activeWindow()
+</programlisting></para><para>Get the XMTextWindow object of the focused text window. </para>  </sect1>
+  <sect1 id="perl_help_addAlias">
+    <title>addAlias</title>
+<para><programlisting>Synopsis: addAlias(name, regExp, do, breakOn, isActive)
+</programlisting></para>    <table>
+      <title>Arguments</title>
+      <tgroup cols="2">
+        <tbody>          <row>
+            <entry>name</entry>
+            <entry>The alias's name (used by other functions to access this alias). </entry>
+          </row>          <row>
+            <entry>regExp</entry>
+            <entry>Assume you typed a line. If line matches regExp the alias is &quot;triggered&quot;. </entry>
+          </row>          <row>
+            <entry>do</entry>
+            <entry>If you give a string here, the line you typed is processed like s/regExp/do/g, and then printed to the server like usual. If you specify a sub ref, then the sub is called with line as it's argument. The sub's return value is printed to the server like usual. </entry>
+          </row>          <row>
+            <entry>breakOn</entry>
+            <entry>1, if the execution of aliases should stop if this one matched, 0 otherwise (default = 0). </entry>
+          </row>          <row>
+            <entry>isActive</entry>
+            <entry>The initial alias state (default = 1, see setAliasState). </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+<para><programlisting>Example:
+	addAlias(&quot;My_Alias1&quot;, &quot;^gg&quot;, &quot;me's grinning...&quot;);
+	# this adds a alias which sends &quot;me's grinning...&quot;
+	# if you type &quot;gg&quot; at the input line</programlisting></para>  </sect1>
+  <sect1 id="perl_help_addDelayed">
+    <title>addDelayed</title>
+<para><programlisting>Synopsis: addDelayed(name, delay, do)
+</programlisting></para>    <table>
+      <title>Arguments</title>
+      <tgroup cols="2">
+        <tbody>          <row>
+            <entry>name</entry>
+            <entry>The delay's name (used by other functions to access this delay). </entry>
+          </row>          <row>
+            <entry>delay</entry>
+            <entry>The action will be performed at getTime() + delay. </entry>
+          </row>          <row>
+            <entry>do</entry>
+            <entry>If you give a string here, the string is sent to the server. If you specify a sub ref, it's executed. </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+<para><programlisting>Example:
+	addDelayed(&quot;MyDelayed&quot;, 10, &quot;Action!&quot;);
+	# Action! will be sent to the server in 10 tics</programlisting></para>  </sect1>
+  <sect1 id="perl_help_addKeyBinding">
+    <title>addKeyBinding</title>
+<para><programlisting>Synopsis: addKeyBinding(name, onKey, do, isActive)
+</programlisting></para>    <table>
+      <title>Arguments</title>
+      <tgroup cols="2">
+        <tbody>          <row>
+            <entry>name</entry>
+            <entry>The keybinding's name (used by other functions to access this keybinding). </entry>
+          </row>          <row>
+            <entry>onKey</entry>
+            <entry>If the representation (see below) of the pressed key matches onKey, the keybinding is triggered. </entry>
+          </row>          <row>
+            <entry>do</entry>
+            <entry>If you give a string here, the string is sent to the server. If you specify a sub ref, it's executed (you can access the key by the perl $1...$n variables. The last match was your onKey regexp match). If the sub returned true, the key is considered &quot;used&quot; and not processed any further. </entry>
+          </row>          <row>
+            <entry>isActive</entry>
+            <entry>The initial keybinding state (default = 1, see setKeyBindingState). </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+<para><programlisting>Example:
+	addKeyBinding('Underscore', '..10.... (.*)',
+		      sub { XM::send(&quot;_$1\n&quot;); return 1; }
+	# If you press ctrl-a, for example, &quot;_a&quot; is sent
+	# to the server</programlisting></para>  </sect1>
+  <sect1 id="perl_help_addTimer">
+    <title>addTimer</title>
+<para><programlisting>Synopsis: addTimer(name, inc, do, isActive)
+</programlisting></para>    <table>
+      <title>Arguments</title>
+      <tgroup cols="2">
+        <tbody>          <row>
+            <entry>name</entry>
+            <entry>The timer's name (used by other functions to access this timer). </entry>
+          </row>          <row>
+            <entry>inc</entry>
+            <entry>Specify the amount of seconds between two calls to this timer. </entry>
+          </row>          <row>
+            <entry>do</entry>
+            <entry>If you give a string here, the string is sent to the server. If you specify a sub ref, it's executed. </entry>
+          </row>          <row>
+            <entry>isActive</entry>
+            <entry>The initial timer state (default = 1, see setTimerState) </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+<para><programlisting>Example:
+	addTimer(&quot;My_Timer1&quot;, 0.5, &quot;Hello, it's me&quot;);
+	# The string &quot;Hello, it's me&quot; is written to the
+	# server two times a second.</programlisting></para>  </sect1>
+  <sect1 id="perl_help_addTrigger">
+    <title>addTrigger</title>
+<para><programlisting>Synopsis: addTrigger(name, regExp, do, breakOn, isActive)
+</programlisting></para>    <table>
+      <title>Arguments</title>
+      <tgroup cols="2">
+        <tbody>          <row>
+            <entry>name</entry>
+            <entry>The trigger's name (used by other functions to access this trigger). </entry>
+          </row>          <row>
+            <entry>regExp</entry>
+            <entry>Assume a line is read from the server. If line =~ regExp the trigger is &quot;triggered&quot;. </entry>
+          </row>          <row>
+            <entry>do</entry>
+            <entry>If you give a string here, the line from the server is processed like s/regExp/do/g, and then printed like usual. If you specify a sub ref, then the sub is called with line as it's argument. The sub's return value is printed like usual.  </entry>
+          </row>          <row>
+            <entry>breakOn</entry>
+            <entry>1, if the execution of triggers should stop if this one matched, 0 otherwise (default = 0). </entry>
+          </row>          <row>
+            <entry>isActive</entry>
+            <entry>The initial trigger state (default = 1, see setTriggerState). </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+<para><programlisting>Example:
+	addTrigger(&quot;My_Trig1&quot;, &quot;^evil guy says:&quot;, &quot;&quot;);
+	# this adds a trigger which hides every line starting
+	# with &quot;^evil guy says:&quot;</programlisting></para>  </sect1>
+  <sect1 id="perl_help_connection">
+    <title>connection</title>
+<para><programlisting>Synopsis: connection(id)
+</programlisting></para><para>Get the XMConnection object for the specified connection id. Connection ids are configured via the bookmark editor, where 0 is always the default connection. You will need multiple connections only in some special cases. Usually connection(0) will be your way to access your active connection. </para>  </sect1>
+  <sect1 id="perl_help_delAlias">
+    <title>delAlias</title>
+<para><programlisting>Synopsis: delAlias(regExp)
+</programlisting></para><para>Delete all aliases who's name matches regExp. </para><para><programlisting>Example:
+	delAlias(&quot;^My_&quot;);
+	# delete all aliases who's name start with My_
+	delAlias(&quot;a&quot;);
+	# delete all aliases with an a in their name</programlisting></para>  </sect1>
+  <sect1 id="perl_help_delDelayed">
+    <title>delDelayed</title>
+<para><programlisting>Synopsis: delDelayed(regExp)
+</programlisting></para><para>Delete all delays who's name matches regExp. </para><para><programlisting>Example:
+	delDelayed(&quot;^My_&quot;);
+	# delete all delays who's name start with My_
+	delDelayed(&quot;a&quot;);
+	# delete all delays with an a in their name</programlisting></para>  </sect1>
+  <sect1 id="perl_help_delKeyBinding">
+    <title>delKeyBinding</title>
+<para><programlisting>Synopsis: delKeyBinding(regExp)
+</programlisting></para><para>Delete all key bindings who's name matches regExp. </para><para><programlisting>Example:
+	delKeyBinding(&quot;^My_&quot;);
+	# delete all key bindings who's name start with My_
+	delKeyBinding(&quot;a&quot;);
+	# delete all key bindings with an a in their name</programlisting></para>  </sect1>
+  <sect1 id="perl_help_delTimer">
+    <title>delTimer</title>
+<para><programlisting>Synopsis: delTimer(regExp)
+</programlisting></para><para>Delete all timers who's name matches regExp. </para><para><programlisting>Example:
+	delTimer(&quot;^My_&quot;);
+	# delete all timers who's name start with My_
+	delTimer(&quot;a&quot;);
+	# delete all timers with an a in their name</programlisting></para>  </sect1>
+  <sect1 id="perl_help_delTrigger">
+    <title>delTrigger</title>
+<para><programlisting>Synopsis: delTrigger(regExp)
+</programlisting></para><para>Delete all triggers who's name matches regExp. </para><para><programlisting>Example:
+	delTrigger(&quot;^My_&quot;);
+	# delete all triggers who's name start with My_
+	delTrigger(&quot;a&quot;);
+	# delete all triggers with an a in their name</programlisting></para>  </sect1>
+  <sect1 id="perl_help_focusedInputLine">
+    <title>focusedInputLine</title>
+<para><programlisting>Synopsis: focusedInputLine()
+</programlisting></para><para>Get the XMInputLine object for the focused input line. </para>  </sect1>
+  <sect1 id="perl_help_getTime">
+    <title>getTime</title>
+<para><programlisting>Synopsis: getTime()
+</programlisting></para><para>Returns the time in tics. One tic is a quarter of a second. </para>  </sect1>
+  <sect1 id="perl_help_listAliases">
+    <title>listAliases</title>
+<para><programlisting>Synopsis: listAliases()
+</programlisting></para><para>List all current aliases. </para>  </sect1>
+  <sect1 id="perl_help_listDelayed">
+    <title>listDelayed</title>
+<para><programlisting>Synopsis: listDelayed()
+</programlisting></para><para>List all current delays. </para>  </sect1>
+  <sect1 id="perl_help_listKeyBindings">
+    <title>listKeyBindings</title>
+<para><programlisting>Synopsis: listKeyBindings()
+</programlisting></para><para>List all current key bindings. </para>  </sect1>
+  <sect1 id="perl_help_listTimers">
+    <title>listTimers</title>
+<para><programlisting>Synopsis: listTimers()
+</programlisting></para><para>List all current timers. </para>  </sect1>
+  <sect1 id="perl_help_listTriggers">
+    <title>listTriggers</title>
+<para><programlisting>Synopsis: listTriggers()
+</programlisting></para><para>List all current triggers. </para>  </sect1>
+  <sect1 id="perl_help_parse">
+    <title>parse</title>
+<para><programlisting>Synopsis: parse(script)
+</programlisting></para><para>This is used to parse a script in @INC by using the perl do command. The only differnce is that parse will print an error if perl reports errors during do. So this is the recommended way to load your scripts. </para><para><programlisting>Example:
+	parse(&quot;myscript.pl&quot;);
+
+	statusWindow-&gt;print(@INC.&quot;\n&quot;);</programlisting></para>  </sect1>
+  <sect1 id="perl_help_parseHelp">
+    <title>parseHelp</title>
+<para><programlisting>Synopsis: parseHelp(file)
+</programlisting></para><para>Parse a help xml file (like those in xpertmud/scripting/help that come with the xpertmud source package). Adds the content of the help xml file to the current help system. Use this if you want to document scripts or plugins you've written. </para>  </sect1>
+  <sect1 id="perl_help_prs">
+    <title>prs</title>
+<para><programlisting>Synopsis: prs(text)
+</programlisting></para><para>This is simply shorthand for writing <programlisting>statusWindow()-&gt;print($text);</programlisting> Don't use this in your scripts, cause it makes them less readable, but at the command line it's valuable ;-) </para>  </sect1>
+  <sect1 id="perl_help_resetWriteRegExps">
+    <title>resetWriteRegExps</title>
+<para><programlisting>Synopsis: resetWriteRegExps()
+</programlisting></para><para>Reset the write regexps to default values. See setWriteRegExps() for extensive information. </para>  </sect1>
+  <sect1 id="perl_help_setAliasState">
+    <title>setAliasState</title>
+<para><programlisting>Synopsis: setAliasState(regExp, state)
+</programlisting></para><para>Set the state of all aliases who's name matches regExp to state. A state of 0 means that this alias is not processed. </para><para><programlisting>Example:
+	setAliasState(&quot;^My_Mode1_&quot;, 0);
+	# disable all aliases that got names starting
+	# with My_Mode1_</programlisting></para>  </sect1>
+  <sect1 id="perl_help_setDelayed">
+    <title>setDelayed</title>
+<para><programlisting>Synopsis: setDelayed(regExp, delay)
+</programlisting></para><para>Set the time incremnt of all delays who's name matches regExp to delay. </para><para><programlisting>Example:
+	setDelayed(&quot;^My_Mode1_&quot;, 15);
+	# All delays that got names starting with
+	# My_Mode1_ will be executed in 15 tics</programlisting></para>  </sect1>
+  <sect1 id="perl_help_setKeyBindingState">
+    <title>setKeyBindingState</title>
+<para><programlisting>Synopsis: setKeyBindingState(regExp, state)
+</programlisting></para><para>Set the state of all key bindings who's name matches regExp to state. A state of 0 means that this key binding is not processed. </para><para><programlisting>Example:
+	setKeyBindingState(&quot;^My_Mode1_&quot;, 0);
+	# disable all key bindings that got names starting
+	# with My_Mode1_</programlisting></para>  </sect1>
+  <sect1 id="perl_help_setLocalEcho">
+    <title>setLocalEcho</title>
+<para><programlisting>Synopsis: setLocalEcho(state)
+</programlisting></para><para>If set to 0, the text typed on the command line will not be printed to the status window. </para>  </sect1>
+  <sect1 id="perl_help_setTimerState">
+    <title>setTimerState</title>
+<para><programlisting>Synopsis: setTimerState(regExp, state)
+</programlisting></para><para>Set the state of all timers who's name matches regExp to state. A state of 0 means that this timer is not processed. </para><para><programlisting>Example:
+	setTimerState(&quot;^My_Mode1_&quot;, 0);
+	# disable all timers that got names starting
+	# with My_Mode1_</programlisting></para>  </sect1>
+  <sect1 id="perl_help_setTimerInc">
+    <title>setTimerInc</title>
+<para><programlisting>Synopsis: setTimerInc(regExp, newInc)
+</programlisting></para><para>Change the increment (interval) of all timers who's name matches regExp to newInc. </para><para><programlisting>Example:
+	setTimerInc(&quot;^My_Mode1_&quot;, 1.0);
+	# all timers that got names starting
+	# with My_Mode1_ will be executed every second</programlisting></para>  </sect1>
+  <sect1 id="perl_help_setTriggerState">
+    <title>setTriggerState</title>
+<para><programlisting>Synopsis: setTriggerState(regExp, state)
+</programlisting></para><para>Set the state of all triggers who's name matches regExp to state. A state of 0 means that this trigger is not processed. </para><para><programlisting>Example:
+	setTriggerState(&quot;^My_Mode1_&quot;, 0);
+	# disable all triggers that got names starting
+	# with My_Mode1_</programlisting></para>  </sect1>
+  <sect1 id="perl_help_setWriteRegExps">
+    <title>setWriteRegExps</title>
+<para><programlisting>Synopsis: setWriteRegExps(writeAtOnce, dontWriteAtOnce)
+</programlisting></para><para>Sets the $writeAtOnceRegExp and $dontWriteAtOnce variables to the given values. To set only one, leave the other undef.</para><para> </para><para>This mainly influences, how a string coming from the server is parsed. The problem is: The server may send a line in five parts, and it may send some lines at once, just like it likes to. So now we mostly want to base triggers on complete lines. For example a trigger for &quot;evil guy says: &quot; will not be executed, if the server sends &quot;evil g&quot; in one packet and &quot;uy says: something\n&quot; in the next packet. Therefor xpertmud has the ability to cache the output of a line until a complete line's finished and call the triggers with the complete line. The problem is now, that sometimes you want to see and use triggers on lines, which are not complete (for example prompts). Xpertmud can't solve this problem by itself, so there are two variables: <programlisting>$writeAtOnceRegExp     (default = &quot;.?&quot;)  and 
+$dontWriteAtOnceRegExp (default = &quot;^\$&quot;)</programlisting> which you can set according to your own needs.</para><para> </para><para>Xpertmud than does the following: <programlisting>	if(&lt;line is not complete&gt; &amp;&amp;
+	   ($line =~ /$writeAtOnceRegExp/) &amp;&amp;
+	   ($line !~ /$dontWriteAtOnceRegExp/)) {
+	  execute triggers on the line part;
+	  print the line part;
+	} else {
+	  cache the line part without doing anything yet;
+	}</programlisting> This means that by default all text is written to the status window even if it's not a full line.</para><para> </para><para>There are two variables, so you can choose which to set according to the mud you're playing. If you mainly need full lines, you'll set $writeAtOnceRegExp to match you're few prompts or whatever and $dontWriteAtOnceRegExp to &quot;^\$&quot;. If you only occasionaly want to cache lines, you'll set $writeAtOnceRegExp to &quot;.*&quot; and $dontWriteAtOnceRegExp to match in occasions where you want caching.</para><para> </para>  </sect1>
+  <sect1 id="perl_help_showKeyNames">
+    <title>showKeyNames</title>
+<para><programlisting>Synopsis: showKeyNames()
+</programlisting></para><para>Show the key names as they are compared when triggering key bindings. The key names consist of the eight modifier bits and the key's normal name. Let's make that clear using an example...</para><para> </para><para>Assume that you want to write &quot;kill bunny&quot; to the mud everytime you press shift-F3. Now at the command line type <programlisting>#showKeyNames()</programlisting> Then press shift-F3. You'll see something like <programlisting>00000000 Shift_L
+10000000 F3</programlisting> The first is the key press event generated when pressing the shift key, the second is the shift-F3 event. Note that the first 1 means that the shift key is hold down. Now press &quot;x&quot; to leave the key name mode. </para><para> </para><para>So, now we know on what we have to match. A keybinding will be triggered whenever the specified regexp matches the key name we've just seen. So #addKeyBinding(&quot;MySlay&quot;, &quot;^10000000 F3\$&quot;, &quot;kill bunny&quot;) will do exactly what we want. Nearly. </para><para> </para><para>Try the following: <programlisting>#showKeyNames()</programlisting> Press the caps-lock key. Press some other key. You see? The caps-lock key generates a modifier. So the above example wouldn't work if caps-lock is active. To prevent this we just write <programlisting>#addKeyBinding(&quot;MySlay&quot;, &quot;^10...... F3\$&quot;, &quot;kill bunny&quot;);</programlisting> Now this will cause the client to write &quot;kill bunny&quot; whenever the shift key is hold down while pressing F3 and the ctrl-key is _not_ pressed, but any other modifier may be present. </para><para> </para>  </sect1>
+  <sect1 id="perl_help_statusWindow">
+    <title>statusWindow</title>
+<para><programlisting>Synopsis: statusWindow()
+</programlisting></para><para>Returns the status window (XMTextBufferWindow) instance. </para><para><programlisting>Example:
+	statusWindow()-&gt;hide();
+	statusWindow().hide()
+	statusWindow()-&gt;print(&quot;some text\n&quot;);</programlisting></para>  </sect1>
+  <sect1 id="perl_help_Step-by-Step">
+    <title>Topic Step-by-Step</title>
+<para>Some step by step tutorials for specific tasks. You can follow them by just copying each line into your input line. (Don't forget to put a '#' at the beginning of each line) </para>  <sect2 id="perl_help_Step-by-Step_Triggers_On_Colored_Text">
+    <title>Topic Triggers On Colored Text</title>
+<para>Most muds give you colored output. The colors are just characters in your string, so you have to be careful. Let's assume the Mud sends something like: <programlisting>Tower of Doom: Exits: N W SW Doooooomy</programlisting> </para><para> </para><para>Now we want to parse the room description and all exits. A regexp like &quot;^([\w\s]+): (\w\s)+(\w+)&quot; won't work because of the color codes hiding inside the text. If you don't need color information at all, you can use the above regexp on XM::ansiToRaw($text). <programlisting>	sub rawParser {
+	  if(XM::ansiToRaw($1) =~ /^([\w\s]+): (\w\s)+(\w+)/) {
+	    statusWindow()-&gt;print(&quot;Triggered!\n&quot;);
+	  }
+	}
+	addTrigger(&quot;RawParser&quot;, qw/^(.*)$/, rawParser);</programlisting> </para><para> </para><para>If you need to distinguish between colors, use XM::ansiToColored($text). This </para><para> </para>  </sect2>
+  <sect2 id="perl_help_Step-by-Step_Window_Positions">
+    <title>Topic Window Positions</title>
+<para>Firstly, let us create some windows <programlisting>	$a = new XMTextWindow(&quot;First&quot;);
+	$b = new XMTextWindow(&quot;Second&quot;);</programlisting> </para><para> </para><para>Now resize the status window to 80 chars width, the height doesn't matter, we'll take care of that later <programlisting>	statusWindow()-&gt;resizeChars(80, 10);</programlisting> </para><para> </para><para>Resize the status window to 80 chars width and full height <programlisting>	statusWindow()-&gt;resize(statusWindow()-&gt;getSizeX(), XM::mdiHeight());</programlisting> </para><para> </para><para>Move the first window to the right of the status window <programlisting>	$a-&gt;move(statusWindow()-&gt;getSizeX(), 0);</programlisting> </para><para> </para><para>Resize the first window to use the full width of the mdi window and half the mdi window's height <programlisting>	$a-&gt;resize(XM::mdiWidth()-statusWindow()-&gt;getSizeX(), XM::mdiHeight()/2);
+	$a-&gt;show();</programlisting> </para><para> </para><para>Let's get a second window in the empty space without the caption. <programlisting>	$b-&gt;hideCaption();
+	$b-&gt;move(statusWindow()-&gt;getSizeX(), $a-&gt;getSizeY());
+	$b-&gt;resize($a-&gt;getSizeX(), XM::mdiHeight()-$a-&gt;getSizeY());
+	$b-&gt;show();
+	$b-&gt;print(&quot;Done.&quot;);</programlisting> </para><para> </para>  </sect2>
+  </sect1>
+  <sect1 id="perl_help_XM">
+    <title>Module XM</title>
+<para>The functions in this module provide an interface to the C++ program. </para>  <sect2 id="perl_help_XM_ansiToRaw">
+    <title>ansiToRaw</title>
+<para><programlisting>Synopsis: ansiToRaw(text)
+</programlisting></para><para>Returns the string without ansi control sequences (e.g. ansi color codes etc.). Use this for more easy parsing of colored text from the server. See &quot;Step-by-Step: Triggers On Colored Text&quot; for further help. </para>  </sect2>
+  <sect2 id="perl_help_XM_ansiToColored">
+    <title>ansiToColored</title>
+<para><programlisting>Synopsis: ansiToColored(text)
+</programlisting></para><para>Returns the string without ansi controll sequences, but still containing color information. The returned string is of the form &quot;FBCFBCFBC...&quot; where F is the foreground color, B is the background color and C is the actual character. See &quot;Step-by-Step: Triggers On Colored Text&quot; for further help. </para><para><programlisting>Example:
+	prs(XM::ansiToColored(&quot;test&quot;))</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XM_echoMode">
+    <title>echoMode</title>
+<para><programlisting>Synopsis: echoMode(state)
+</programlisting></para><para>Set the clients echo mode. If echo mode is on, characters typed on the keyboard are shown in the input line. If echo mode is off, an &quot;*&quot; appears for each character typed. </para><para><programlisting>Example:
+	XM::echoMode(0);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XM_mdiHeight">
+    <title>mdiHeight</title>
+<para><programlisting>Synopsis: mdiHeight()
+</programlisting></para><para>Returns the mdi window's height. Use this to resize your windows so that all space is used perfectly. See XMWindow::hideCaption() to learn how to get even more space. See &quot;Step-by-Step: Window Positions&quot; for further help. </para>  </sect2>
+  <sect2 id="perl_help_XM_mdiWidth">
+    <title>mdiWidth</title>
+<para><programlisting>Synopsis: mdiWidth()
+</programlisting></para><para>Returns the mdi window's width. Use this to resize your windows so that all space is used perfectly. See XMWindow::hideCaption() to learn how to get even more space. See &quot;Step-by-Step: Window Positions&quot; for further help. </para>  </sect2>
+  <sect2 id="perl_help_XM_playAudio">
+    <title>playAudio</title>
+<para><programlisting>Synopsis: playAudio(audiofile)
+</programlisting></para><para>Make xpertmud play an audio file via kde/qt's audio system. </para><para><programlisting>Example:
+	XM::playAudio(&quot;/home/me/myfile.wav&quot;);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XM_resetStatusMsg">
+    <title>resetStatusMsg</title>
+<para><programlisting>Synopsis: resetStatusMsg()
+</programlisting></para><para>Set the status message to a client default value. </para><para><programlisting>Example:
+	XM::resetStatusMsg();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XM_send">
+    <title>send</title>
+<para><programlisting>Synopsis: send(text, id)
+</programlisting></para><para>Send a string to the server. Usually there should be a newline at the end of the string. The id specifies the connection you want to send to (see XM::open). </para><para><programlisting>Example:
+	XM::send(&quot;slay evil bear\n&quot;);
+	XM::send(&quot;sending to connection 42\n&quot;, 42);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XM_setStatusMsg">
+    <title>setStatusMsg</title>
+<para><programlisting>Synopsis: setStatusMsg(message)
+</programlisting></para><para>Set the text shown in the client's status line. The C++ part of the client sometimes sets this message, for example while trying to open a connection. </para><para><programlisting>Example:
+	XM::setStatusMsg(&quot;Retrieved opponent info&quot;);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XM_showError">
+    <title>showError</title>
+<para><programlisting>Synopsis: showError(errorMessage)
+</programlisting></para><para>Show an error information in the status window. </para><para><programlisting>Example:
+	# Do something which could cause
+  	# some error
+	if(@_) { XM::showError(@_); }</programlisting></para>  </sect2>
+  </sect1>
+  <sect1 id="perl_help_XMWindow">
+    <title>Class XMWindow</title>
+<para>This is the base class for all scriptable window classes. </para>  <sect2 id="perl_help_XMWindow_close">
+    <title>close</title>
+<para><programlisting>Synopsis: close()
+</programlisting></para><para>Close and destroy a window. On destruction a window is closed automagically. </para><para><programlisting>Example:
+	$win-&gt;close();
+	# is equivalent to
+	$win = undef;
+	# if $win is the only reference to 
+	# the window and you don't use $win
+ 	# afterwards
+	$win2 = $win;
+	# now there's the difference
+	# 1. possibility
+	$win-&gt;close();
+	statusWindow()-&gt;print($win2-&gt;isValid());
+	# will show false
+
+	# 2. possibility
+	$win = undef;
+	statusWindow()-&gt;print($win2-&gt;isValid());
+	# will show true</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMWindow_getPositionX">
+    <title>getPositionX</title>
+<para><programlisting>Synopsis: getPositionX()
+</programlisting></para><para>Get the x coordinate of the window's position. See also XMWindow::move. </para><para><programlisting>Example:
+	$x = $win-&gt;getPositionX();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMWindow_getPositionY">
+    <title>getPositionY</title>
+<para><programlisting>Synopsis: getPositionY()
+</programlisting></para><para>Get the y coordinate of the window's position. See also XMWindow::move. </para><para><programlisting>Example:
+	$y = $win-&gt;getPositionY();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMWindow_getSizeX">
+    <title>getSizeX</title>
+<para><programlisting>Synopsis: getSizeX()
+</programlisting></para><para>Get the window's width. See also XMWindow::resize. </para><para><programlisting>Example:
+	$width = $win-&gt;getSizeX();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMWindow_getSizeY">
+    <title>getSizeY</title>
+<para><programlisting>Synopsis: getSizeY()
+</programlisting></para><para>Get the window's height. See also XMWindow::resize. </para><para><programlisting>Example:
+	$height = $win-&gt;getSizeY();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMWindow_hide">
+    <title>hide</title>
+<para><programlisting>Synopsis: hide()
+</programlisting></para><para>Used to hide a window from the screen. Use show to revert the effect. </para>  </sect2>
+  <sect2 id="perl_help_XMWindow_hideCaption">
+    <title>hideCaption</title>
+<para><programlisting>Synopsis: hideCaption()
+</programlisting></para><para>Hide the window's caption bar if not maximized. The caption bar contains the window's name and some buttons (minimize / maximize / close). This is extremely useful to save some space if you show multiple windows at once. </para><para><programlisting>Example:
+	$win-&gt;resize(250, 250);	$win-&gt;hideCaption();
+	# now you have much space for other windows</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMWindow_isValid">
+    <title>isValid</title>
+<para><programlisting>Synopsis: isValid()
+</programlisting></para><para>True if this window has not been closed. See XMWindow::close for more info. </para>  </sect2>
+  <sect2 id="perl_help_XMWindow_lower">
+    <title>lower</title>
+<para><programlisting>Synopsis: lower()
+</programlisting></para><para>Lower a window to the background, so other windows behind it will become visible. </para><para><programlisting>Example:
+	$win-&gt;lower();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMWindow_maximize">
+    <title>maximize</title>
+<para><programlisting>Synopsis: maximize()
+</programlisting></para><para>Maximize a window. </para><para><programlisting>Example:
+	$win-&gt;maximize();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMWindow_minimize">
+    <title>minimize</title>
+<para><programlisting>Synopsis: minimize()
+</programlisting></para><para>Minimize a window. </para><para><programlisting>Example:
+	$win-&gt;minimize();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMWindow_move">
+    <title>move</title>
+<para><programlisting>Synopsis: move(x, y)
+</programlisting></para><para>Move the window's left upper corner to the point (x, y) relative to the MDI Widget. x and y are pixel values. </para><para><programlisting>Example:
+	$win-&gt;move(0, 0);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMWindow_raise">
+    <title>raise</title>
+<para><programlisting>Synopsis: raise()
+</programlisting></para><para>Raise this window to the top, so it will become visible if other windows are in front of it. </para><para><programlisting>Example:
+	$win-&gt;raise();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMWindow_resize">
+    <title>resize</title>
+<para><programlisting>Synopsis: resize(width, height)
+</programlisting></para><para>Resize the window to width and height. The variables are given in pixels. </para><para><programlisting>Example:
+	$win-&gt;resize(300, 100);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMWindow_setTitle">
+    <title>setTitle</title>
+<para><programlisting>Synopsis: setTitle(title)
+</programlisting></para><para>Set the windows caption to title. </para><para><programlisting>Example:
+	$win-&gt;setTitle(&quot;A nice Window&quot;);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMWindow_show">
+    <title>show</title>
+<para><programlisting>Synopsis: show()
+</programlisting></para><para>Show the window if it's hidden. On creation windows are hidden by default. </para><para><programlisting>Example:
+	$win-&gt;show();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMWindow_showCaption">
+    <title>showCaption</title>
+<para><programlisting>Synopsis: showCaption()
+</programlisting></para><para>Show the window's caption bar if not maximized. The caption bar contains the window's name and some buttons (minimize / maximize / close). </para><para><programlisting>Example:
+	$win-&gt;showCaption();</programlisting></para>  </sect2>
+  </sect1>
+  <sect1 id="perl_help_XMTextWindow">
+    <title>Class XMTextWindow</title>
+<para>(Direct child class of XMWindow) This is a standard text window class used for the output of status information. It's basically just a big character buffer. </para><para><programlisting>Example:
+	$win = new XMTextWindow(); # it's still hidden
+	$win-&gt;move(0, 0);
+	$win-&gt;resizeChars(30, 100);
+	$win-&gt;show();
+	$win-&gt;setCursor(14, 0);
+	$win-&gt;print(&quot;Some nice heading\n&quot;);</programlisting></para>  <sect2 id="perl_help_XMTextWindow_clear">
+    <title>clear</title>
+<para><programlisting>Synopsis: clear()
+</programlisting></para><para>Guess what? </para><para><programlisting>Example:
+	$win-&gt;clear();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_clearEOL">
+    <title>clearEOL</title>
+<para><programlisting>Synopsis: clearEOL()
+</programlisting></para><para>Clear from the current cursor position to the end of the line. </para><para><programlisting>Example:
+	$win-&gt;setCursor(13, 14);
+	$win-&gt;clearEOL();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_clearBOL">
+    <title>clearBOL</title>
+<para><programlisting>Synopsis: clearBOL()
+</programlisting></para><para>Clear from the current cursor position to the beginning of the line. </para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_clearEOS">
+    <title>clearEOS</title>
+<para><programlisting>Synopsis: clearEOS()
+</programlisting></para><para>Clear from the current cursor position to the end of the screen. </para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_clearBOS">
+    <title>clearBOS</title>
+<para><programlisting>Synopsis: clearBOS()
+</programlisting></para><para>Clear from the current cursor position to the beginning of the screen </para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_clearLine">
+    <title>clearLine</title>
+<para><programlisting>Synopsis: clearLine()
+</programlisting></para><para>Clear the current line (the one the cursor is in). </para><para><programlisting>Example:
+	$win-&gt;setCursor(0, 25);
+	$win-&gt;clearLine();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_disableMouseEvents">
+    <title>disableMouseEvents</title>
+<para><programlisting>Synopsis: disableMouseEvents()
+</programlisting></para><para>Disable mouse events in this window. Selecting text won't work in this window if the script get's the mouse events. </para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_enableMouseEvents">
+    <title>enableMouseEvents</title>
+<para><programlisting>Synopsis: enableMouseEvents()
+</programlisting></para><para>Enable mouse events in this window. Selecting text won't work in this window if the script get's the mouse events. </para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_getCharAt">
+    <title>getCharAt</title>
+<para><programlisting>Synopsis: getCharAt(x, y)
+</programlisting></para><para>Return the character you can see at position (x, y) inside the window. </para><para><programlisting>Example:
+	$char = $win-&gt;getCharAt(2, 5);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_getColumns">
+    <title>getColumns</title>
+<para><programlisting>Synopsis: getColumns()
+</programlisting></para><para>Get the window's width in columns, e.g. how many characters fit into a line. </para><para><programlisting>Example:
+	$width = $win-&gt;getColumns();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_getCursorPos">
+    <title>getCursorPos</title>
+<para><programlisting>Synopsis: getCursorPos()
+</programlisting></para><para>Returns the cursor position (x, y). </para><para><programlisting>Example:
+	($x, $y) = $win-&gt;getCursorPos();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_getCursorX">
+    <title>getCursorX</title>
+<para><programlisting>Synopsis: getCursorX()
+</programlisting></para><para>Get the x-coordinate of the current cursor position. </para><para><programlisting>Example:
+	$x = $win-&gt;getCursorX();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_getCursorY">
+    <title>getCursorY</title>
+<para><programlisting>Synopsis: getCursorY()
+</programlisting></para><para>Get the y-coordinate of the current cursor position. </para><para><programlisting>Example:
+	$y = $win-&gt;getCursorY();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_getFGColorAt">
+    <title>getFGColorAt</title>
+<para><programlisting>Synopsis: getFGColorAt(x, y)
+</programlisting></para><para>Get the foreground color at position x, y. </para><para><programlisting>Example:
+	$c = $win-&gt;getFGColorAt(10, 5)</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_getBGColorAt">
+    <title>getBGColorAt</title>
+<para><programlisting>Synopsis: getBGColorAt(x, y)
+</programlisting></para><para>Get the background color at position x, y. </para><para><programlisting>Example:
+	$c = $win-&gt;getBGColorAt(10, 5)</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_getLines">
+    <title>getLines</title>
+<para><programlisting>Synopsis: getLines()
+</programlisting></para><para>Get the window's height in lines, e.g. how many characters fit into a row. </para><para><programlisting>Example:
+	$height = $win-&gt;getLines()</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_newline">
+    <title>newline</title>
+<para><programlisting>Synopsis: newline()
+</programlisting></para><para>The same as $win-&gt;print(&quot;\n&quot;) would do on a XMTextBufferWindow. XMTextWindows don't evaluate \n, so you have to use newline() instead. </para><para><programlisting>Example:
+	$win-&gt;print(&quot;Hallo&quot;);
+	$win-&gt;newline();</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_printRaw">
+    <title>printRaw</title>
+<para><programlisting>Synopsis: printRaw(text)
+</programlisting></para><para>Print some text to the window. ANSI control sequences are not processed, use print for text directly from the mud server. </para><para><programlisting>Example:
+	$win-&gt;printRaw(&quot;Some raw text&quot;)</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_print">
+    <title>print</title>
+<para><programlisting>Synopsis: print(text)
+</programlisting></para><para>Print ANSI formatted text to the window. You can simply pass anything coming from the server. Pay attention when using regexps on ANSI formatted text! </para><para><programlisting>Example:
+	$win-&gt;print($textFromServer);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_registerMouseDownEvent">
+    <title>registerMouseDownEvent</title>
+<para><programlisting>Synopsis: registerMouseDownEvent(function)
+</programlisting></para><para>If the widget gets mouse events (see enableMouseEvents()), the function is called whenever a mouse down event occurs. The function gets the coordinates of the mouse event as parameters. </para><para><programlisting>Example:
+	$win-&gt;registerMouseDownEvent(sub {
+	  my $x = shift;
+	  my $y = shift;
+	  statusWindow()-&gt;print($x.&quot;, &quot;.$y);
+	});</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_registerMouseDragEvent">
+    <title>registerMouseDragEvent</title>
+<para><programlisting>Synopsis: registerMouseDragEvent(function)
+</programlisting></para><para>If the widget gets mouse events (see enableMouseEvents()), the function is called whenever a mouse drag event occurs. The function gets the coordinates of the mouse event as parameters. </para><para><programlisting>Example:
+	$win-&gt;registerMouseDragEvent(sub {
+	  my $x = shift;
+	  my $y = shift;
+	  statusWindow()-&gt;print($x.&quot;, &quot;.$y);
+	});</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_registerMouseUpEvent">
+    <title>registerMouseUpEvent</title>
+<para><programlisting>Synopsis: registerMouseUpEvent(function)
+</programlisting></para><para>If the widget gets mouse events (see enableMouseEvents()), the function is called whenever a mouse up event occurs. The function gets the coordinates of the mouse event as parameters. </para><para><programlisting>Example:
+	$win-&gt;registerMouseUpEvent(sub {
+	  my $x = shift;
+	  my $y = shift;
+	  statusWindow()-&gt;print($x.&quot;, &quot;.$y);
+	});</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_resetAttributes">
+    <title>resetAttributes</title>
+<para><programlisting>Synopsis: resetAttributes()
+</programlisting></para><para>Reset all ANSI attributes (color and state). </para><para><programlisting>Example:
+	$win-&gt;setBold(1);
+	$win-&gt;setBGColor(RED);
+	$win-&gt;print(&quot;bold and red&quot;);
+	$win-&gt;resetAttributes();
+	$win-&gt;print(&quot;just plain&quot;);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_resizeChars">
+    <title>resizeChars</title>
+<para><programlisting>Synopsis: resizeChars(width, height)
+</programlisting></para><para>Resize the window so that exactly width characters fit in a line and height characters in a row. </para><para><programlisting>Example:
+	$win-&gt;resizeChars(23, 42);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_scrollColumns">
+    <title>scrollColumns</title>
+<para><programlisting>Synopsis: scrollColumns(num)
+</programlisting></para><para>Scroll the window's content by num columns. A positive value means scrolling right, a negative scrolling to the left. </para><para><programlisting>Example:
+	$win-&gt;scrollColumns(3);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_scrollLines">
+    <title>scrollLines</title>
+<para><programlisting>Synopsis: scrollLines(num)
+</programlisting></para><para>Scroll the window's content by num lines. A positive value means scrolling down (like the page down key), a negative scrolling up. </para><para><programlisting>Example:
+	$win-&gt;scrollLines(-3);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_setBold">
+    <title>setBold</title>
+<para><programlisting>Synopsis: setBold(state)
+</programlisting></para><para>Set the default printing style to bold, if state is true, otherwise to unbold. </para><para><programlisting>Example:
+	$win-&gt;setBold(1);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_setBlinking">
+    <title>setBlinking</title>
+<para><programlisting>Synopsis: setBlinking(state)
+</programlisting></para><para>THIS IS CURRENTLY _NOT_ SUPPORTED!!!!!!! Set the default printing style to blinking, if state is true, otherwise to unblinking. </para><para><programlisting>Example:
+	$win-&gt;setBlinking(1);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_setCursor">
+    <title>setCursor</title>
+<para><programlisting>Synopsis: setCursor(x, y)
+</programlisting></para><para>Set the cursor to position (x, y) inside the window. </para><para><programlisting>Example:
+	$win-&gt;setCursor(4, 4);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_setDefaultBGColor">
+    <title>setDefaultBGColor</title>
+<para><programlisting>Synopsis: setDefaultBGColor(color)
+</programlisting></para><para>Sets the background color which will be drawn if all attributes are set to default values. </para><para><programlisting>Example:
+	$win-&gt;resetAttributes();
+	$win-&gt;setDefaultBGColor(BLUE);
+	$win-&gt;print(&quot;Blue\n&quot;);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_setDefaultFGColor">
+    <title>setDefaultFGColor</title>
+<para><programlisting>Synopsis: setDefaultFGColor(color)
+</programlisting></para><para>Sets the foreground color which will be drawn if all attributes are set to default values. </para><para><programlisting>Example:
+	$win-&gt;resetAttributes();
+	$win-&gt;setDefaultFGColor(BLUE);
+	$win-&gt;print(&quot;Blue\n&quot;);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_setFont">
+    <title>setFont</title>
+<para><programlisting>Synopsis: setFont(name, size)
+</programlisting></para><para>Set the window's font to name and size. </para><para><programlisting>Example:
+	$win-&gt;setFont(&quot;fixed&quot;, 15); # somehow large...</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_setIntensive">
+    <title>setIntensive</title>
+<para><programlisting>Synopsis: setIntensive(state)
+</programlisting></para><para>Set the default printing style to intensive, if state is true, otherwise to unintensive. </para><para><programlisting>Example:
+	$win-&gt;setIntensive(1);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_setReverse">
+    <title>setReverse</title>
+<para><programlisting>Synopsis: setReverse(state)
+</programlisting></para><para>Set the default printing style to reverse, if state is true, otherwise to unreverse. </para><para><programlisting>Example:
+	$win-&gt;setReverse(1);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_setUnderline">
+    <title>setUnderline</title>
+<para><programlisting>Synopsis: setUnderline(state)
+</programlisting></para><para>Set the default printing style to underline, if state is true, otherwise to ununderline. </para><para><programlisting>Example:
+	$win-&gt;setUnderline(1);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_setBGColor">
+    <title>setBGColor</title>
+<para><programlisting>Synopsis: setBGColor(color)
+</programlisting></para><para>Set the window's background color to a color from 0 to 7. There are also color constants BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN and WHITE. </para><para><programlisting>Example:
+	$win-&gt;setBGColor(RED); # is equal to
+	$win-&gt;setBGColor(1);</programlisting></para>  </sect2>
+  <sect2 id="perl_help_XMTextWindow_setFGColor">
+    <title>setFGColor</title>
+<para><programlisting>Synopsis: setFGColor(color)
+</programlisting></para><para>Set the window's foreground color to a color from 0 to 7. There are also color constants BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN and WHITE. </para><para><programlisting>Example:
+	$win-&gt;setFGColor(RED); # is equal to
+	$win-&gt;setFGColor(1);</programlisting></para>  </sect2>
+  </sect1>
+  <sect1 id="perl_help_XMTextBufferWindow">
+    <title>Class XMTextBufferWindow</title>
+<para>(Direct child class of XMTextWindow) The XMTextBufferWindow is just a XMTextWindow with a scrollback buffer. So there's no new functionality, just some functions behave different, but just as you would expect it from a usual telnet widget. </para><para><programlisting>Example:
+	$win = new XMTextBufferWindow(); # it's still hidden
+	$win-&gt;move(0, 0);
+	$win-&gt;resizeChars(30, 10);
+	$win-&gt;show();
+	$win-&gt;setCursor(14, 9);
+	# this statement will cause the window to scroll
+	# down one line automagically. A scrollbar will
+	# appear at the widget's right side...
+	$win-&gt;print(&quot;Some nice heading\n&quot;);	
+	# the next statement will cause the window
+	# to scroll to the beginning of the buffer.
+	# Unlinke XMTextWindow no new lines are
+	# inserted. You can only scroll within the
+	# filled area.
+	$win-&gt;scrollLines(-42);</programlisting></para>  <sect2 id="perl_help_XMTextBufferWindow_getWordWrapColumn">
+    <title>getWordWrapColumn</title>
+<para><programlisting>Synopsis: getWordWrapColumn()
+</programlisting></para><para>Get the column where word wrapping occurs. Negative values are counted from the right corner of the window. </para>  </sect2>
+  <sect2 id="perl_help_XMTextBufferWindow_setWordWrapColumn">
+    <title>setWordWrapColumn</title>
+<para><programlisting>Synopsis: setWordWrapColumn(x)
+</programlisting></para><para>Set the column where word wrapping should occur. Negative values are counted from the right corner of the window. Setting the WordWrapColumn to zero disables word wrapping. </para><para><programlisting>Example:
+	statusWindow-&gt;setWordWrapColumn(80)
+	# wrap at 80, even if the window is smaller.
+	statusWindow-&gt;setWordWrapColumn(-1)
+	# (the default) wrap at the right border</programlisting></para>  </sect2>
+  </sect1>
+  <sect1 id="perl_help_XMConnection">
+    <title>Class XMConnection</title>
+<para>An XMConnection object can be used to control an xpertmud connection via the script. Each connection to the outside world gets an unique id (see the bookmark editor, there you can specify some default connections). You can open new connections at runtime via the XMConnection constructor, or you can access already open connections via the toplevel 'connection' function. </para><para><programlisting>Example:
+	$c = new XMConnection(&quot;localhost&quot;, 23);
+	# now you've got a new connection.
+	# if you wish to access the default connection
+	# which has id 0, use
+	connection(0)-&gt;send(&quot;say hello\n&quot;);
+	# to send something.
+	# As a shortcut for connection 0, you
+	# can just use
+	XM::send(&quot;say hello\n&quot;);</programlisting></para>  <sect2 id="perl_help_XMConnection_XMConnection">
+    <title>XMConnection</title>
+<para><programlisting>Synopsis: XMConnection(host, port, onConnect)
+</programlisting></para><para>Creates a new connection object with the next free id and connects to the specified host on the specified port, sending $onConnect after the connection was established. </para>  </sect2>
+  <sect2 id="perl_help_XMConnection_open">
+    <title>open</title>
+<para><programlisting>Synopsis: open(host, port, onConnect)
+</programlisting></para><para>Reuse the existing connection to connect to a new host on a new port. Use this for example, if you have some fallback mechanism for your mud server. </para>  </sect2>
+  <sect2 id="perl_help_XMConnection_close">
+    <title>close</title>
+<para><programlisting>Synopsis: close()
+</programlisting></para><para>Close the connection. </para>  </sect2>
+  <sect2 id="perl_help_XMConnection_setInputEncoding">
+    <title>setInputEncoding</title>
+<para><programlisting>Synopsis: setInputEncoding(enc)
+</programlisting></para><para>Set the encoding xpertmud assumes when receiving text from the mud server to $enc. The encoding is specified as a string that describes the encoding, such as &quot;utf8&quot; or &quot;ISO8859-1&quot; (latin1). The default encoding is latin1. Xpertmud automatically changes to utf8 if the mud server tells xpertmud it's using unicode, but otherwise you have to set your encoding manually. You can use any encoding that Qt understands, look for example at http://doc.trolltech.com/3.3/qtextcodec.html. </para>  </sect2>
+  <sect2 id="perl_help_XMConnection_setOutputEncoding">
+    <title>setOutputEncoding</title>
+<para><programlisting>Synopsis: setOutputEncoding(enc)
+</programlisting></para><para>As with setInputEncoding you can set the stream's encoding, but for the text xpertmud sends to the server. This is mostly not required, but if your mud server can handle it, xpertmud gives you the possibility to use your local encoding or even unicode. </para>  </sect2>
+  </sect1>
+  <sect1 id="perl_help_XMInputLine">
+    <title>Class XMInputLine</title>
+<para>The XMInputLine class let's you control xpertmud's input lines via the scripting engine. You can add new input lines via the menu and you can receive the current input line via the toplevel function 'focusedInputLine'. This allows you to implement tab completion and other nice features from your script. </para>  <sect2 id="perl_help_XMInputLine_getCursorX">
+    <title>getCursorX</title>
+<para><programlisting>Synopsis: getCursorX()
+</programlisting></para><para>Returns the X position of the cursor in the current paragraph of the input line. Be aware that the input line can have multiple paragraphs, each of which can be multiple lines. </para>  </sect2>
+  <sect2 id="perl_help_XMInputLine_getCursorY">
+    <title>getCursorY</title>
+<para><programlisting>Synopsis: getCursorY()
+</programlisting></para><para>Returns the Y position (current paragraph) of the cursor in the input line. Paragraphs can stretch over multiple visible lines (via line breaks), but there is never a newline inside a paragraph. </para>  </sect2>
+  <sect2 id="perl_help_XMInputLine_setCursorX">
+    <title>setCursorX</title>
+<para><programlisting>Synopsis: setCursorX(x)
+</programlisting></para><para>Set the cursor in the current paragraph to $x. </para>  </sect2>
+  <sect2 id="perl_help_XMInputLine_setCursorY">
+    <title>setCursorY</title>
+<para><programlisting>Synopsis: setCursorY(y)
+</programlisting></para><para>Set current paragraph to $y. </para>  </sect2>
+  </sect1>
+  </chapter>

@@ -1,0 +1,10 @@
+###    Compiling Xpertmud    ###
+
+Instructions as of 2006-03-24 (on Ubuntu 8.10):
+
+From the xpertmud basedir:
+
+make -f Makefile.dist
+./configure --prefix=/home/me/.kde --with-qt-includes=/usr/include/qt3 --with-qt-libraries=/usr/lib/qt3 --disable-python --disable-ruby --enable-perl
+make
+make install

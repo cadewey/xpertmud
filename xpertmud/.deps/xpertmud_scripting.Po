@@ -1,0 +1,836 @@
+xpertmud_scripting.o: xpertmud_scripting.cc /usr/include/kde/klibloader.h \
+ /usr/lib/qt-3.3/include/qobject.h /usr/lib/qt-3.3/include/qobjectdefs.h \
+ /usr/lib/qt-3.3/include/qglobal.h /usr/lib/qt-3.3/include/qconfig.h \
+ /usr/lib/qt-3.3/include/qmodules.h /usr/lib/qt-3.3/include/qfeatures.h \
+ /usr/lib/qt-3.3/include/qwindowdefs.h /usr/lib/qt-3.3/include/qstring.h \
+ /usr/lib/qt-3.3/include/qcstring.h /usr/lib/qt-3.3/include/qmemarray.h \
+ /usr/lib/qt-3.3/include/qgarray.h /usr/lib/qt-3.3/include/qshared.h \
+ /usr/lib/qt-3.3/include/qwinexport.h /usr/include/string.h \
+ /usr/include/features.h /usr/include/sys/cdefs.h \
+ /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
+ /usr/include/gnu/stubs-32.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/include/stddef.h \
+ /usr/include/xlocale.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/include/limits.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/include/syslimits.h \
+ /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+ /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+ /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+ /usr/include/bits/stdio_lim.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/string \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/c++config.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/os_defines.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/cpu_defines.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stringfwd.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/char_traits.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_algobase.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/functexcept.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/exception_defines.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/cpp_type_traits.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/ext/type_traits.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/ext/numeric_traits.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_pair.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/move.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/concept_check.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_iterator_base_types.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_iterator_base_funcs.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_iterator.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/debug/debug.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/postypes.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/cwchar \
+ /usr/include/wchar.h /usr/include/stdio.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/include/stdarg.h \
+ /usr/include/bits/wchar.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/allocator.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/c++allocator.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/ext/new_allocator.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/new \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/exception \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/localefwd.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/c++locale.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/clocale \
+ /usr/include/locale.h /usr/include/bits/locale.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/iosfwd \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/cctype \
+ /usr/include/ctype.h /usr/include/bits/types.h \
+ /usr/include/bits/typesizes.h /usr/include/endian.h \
+ /usr/include/bits/endian.h /usr/include/bits/byteswap.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/ostream_insert.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/cxxabi_forced.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_function.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/backward/binders.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/range_access.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/basic_string.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/ext/atomicity.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/gthr.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/gthr-default.h \
+ /usr/include/pthread.h /usr/include/sched.h /usr/include/time.h \
+ /usr/include/bits/sched.h /usr/include/bits/time.h \
+ /usr/include/bits/timex.h /usr/include/bits/pthreadtypes.h \
+ /usr/include/bits/setjmp.h /usr/include/unistd.h \
+ /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+ /usr/include/bits/confname.h /usr/include/getopt.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/atomic_word.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/initializer_list \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/basic_string.tcc \
+ /usr/lib/qt-3.3/include/qnamespace.h /usr/lib/qt-3.3/include/qevent.h \
+ /usr/lib/qt-3.3/include/qregion.h /usr/lib/qt-3.3/include/qrect.h \
+ /usr/lib/qt-3.3/include/qsize.h /usr/lib/qt-3.3/include/qpoint.h \
+ /usr/lib/qt-3.3/include/qmime.h /usr/lib/qt-3.3/include/qmap.h \
+ /usr/lib/qt-3.3/include/qdatastream.h \
+ /usr/lib/qt-3.3/include/qiodevice.h /usr/lib/qt-3.3/include/qpair.h \
+ /usr/lib/qt-3.3/include/qvaluelist.h /usr/lib/qt-3.3/include/qtl.h \
+ /usr/lib/qt-3.3/include/qtextstream.h /usr/include/libio.h \
+ /usr/include/_G_config.h /usr/include/bits/sys_errlist.h \
+ /usr/include/bits/stdio.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/cstddef \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/iterator \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/ostream \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/ios \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/ios_base.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/locale_classes.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/locale_classes.tcc \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/streambuf \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/streambuf.tcc \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/basic_ios.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/locale_facets.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/cwctype \
+ /usr/include/wctype.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/ctype_base.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/streambuf_iterator.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/ctype_inline.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/locale_facets.tcc \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/basic_ios.tcc \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/ostream.tcc \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/istream \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/istream.tcc \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stream_iterator.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/list \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_list.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/list.tcc \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/map \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_tree.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_map.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_multimap.h \
+ /usr/lib/qt-3.3/include/qstring.h /usr/lib/qt-3.3/include/qstringlist.h \
+ /usr/lib/qt-3.3/include/qstrlist.h /usr/lib/qt-3.3/include/qptrlist.h \
+ /usr/lib/qt-3.3/include/qglist.h \
+ /usr/lib/qt-3.3/include/qptrcollection.h \
+ /usr/lib/qt-3.3/include/qasciidict.h /usr/lib/qt-3.3/include/qgdict.h \
+ /usr/lib/qt-3.3/include/qptrlist.h /usr/include/kde/kglobal.h \
+ /usr/include/kde/kdelibs_export.h /usr/include/kde/kdemacros.h \
+ /usr/lib/qt-3.3/include/qglobal.h /usr/include/kde/kinstance.h \
+ /usr/include/stdlib.h /usr/include/bits/waitflags.h \
+ /usr/include/bits/waitstatus.h /usr/include/sys/types.h \
+ /usr/include/sys/select.h /usr/include/bits/select.h \
+ /usr/include/bits/sigset.h /usr/include/sys/sysmacros.h \
+ /usr/include/alloca.h /usr/include/kde/klocale.h \
+ /usr/include/kde/kdelibs_export.h /usr/include/kde/kaudioplayer.h \
+ xpertmud.h ../config.h /usr/include/kde/kapplication.h \
+ /usr/include/kde/kdeversion.h /usr/lib/qt-3.3/include/qapplication.h \
+ /usr/lib/qt-3.3/include/qdesktopwidget.h \
+ /usr/lib/qt-3.3/include/qwidget.h /usr/lib/qt-3.3/include/qobject.h \
+ /usr/lib/qt-3.3/include/qpaintdevice.h \
+ /usr/lib/qt-3.3/include/qpalette.h /usr/lib/qt-3.3/include/qcolor.h \
+ /usr/lib/qt-3.3/include/qstringlist.h /usr/lib/qt-3.3/include/qbrush.h \
+ /usr/lib/qt-3.3/include/qfont.h /usr/lib/qt-3.3/include/qfontmetrics.h \
+ /usr/lib/qt-3.3/include/qfontinfo.h \
+ /usr/lib/qt-3.3/include/qsizepolicy.h \
+ /usr/lib/qt-3.3/include/qasciidict.h \
+ /usr/lib/qt-3.3/include/qtranslator.h /usr/lib/qt-3.3/include/qpixmap.h \
+ /usr/include/kde/kmainwindow.h /usr/include/kde/kxmlguifactory.h \
+ /usr/lib/qt-3.3/include/qdom.h /usr/lib/qt-3.3/include/qvaluelist.h \
+ /usr/include/kde/kxmlguiclient.h /usr/lib/qt-3.3/include/qmap.h \
+ /usr/include/kde/kxmlguibuilder.h /usr/lib/qt-3.3/include/qmainwindow.h \
+ /usr/lib/qt-3.3/include/qtoolbar.h /usr/lib/qt-3.3/include/qdockwindow.h \
+ /usr/lib/qt-3.3/include/qframe.h /usr/lib/qt-3.3/include/qmetaobject.h \
+ /usr/lib/qt-3.3/include/qconnection.h /usr/include/kde/ktoolbar.h \
+ /usr/lib/qt-3.3/include/qtoolbar.h /usr/lib/qt-3.3/include/qcombobox.h \
+ /usr/lib/qt-3.3/include/qguardedptr.h /usr/lib/qt-3.3/include/qframe.h \
+ /usr/lib/qt-3.3/include/qiconset.h /usr/lib/qt-3.3/include/qpixmap.h \
+ /usr/include/kde/kaction.h /usr/lib/qt-3.3/include/qkeysequence.h \
+ /usr/include/kde/kguiitem.h /usr/include/kde/kicontheme.h \
+ /usr/include/kde/kshortcut.h /usr/include/kde/kstdaction.h \
+ /usr/include/kde/kactioncollection.h /usr/include/kde/kactionclasses.h \
+ /usr/include/kde/kurl.h ../qextmdi/include/qextmdimainfrm.h \
+ /usr/include/kde/kmenubar.h /usr/lib/qt-3.3/include/qmenubar.h \
+ /usr/lib/qt-3.3/include/qpopupmenu.h /usr/lib/qt-3.3/include/qmenudata.h \
+ /usr/lib/qt-3.3/include/qiconset.h \
+ /usr/lib/qt-3.3/include/qkeysequence.h /usr/lib/qt-3.3/include/qsignal.h \
+ /usr/lib/qt-3.3/include/qvariant.h /usr/include/kde/kpopupmenu.h \
+ /usr/lib/qt-3.3/include/qpopupmenu.h /usr/include/kde/kpixmapeffect.h \
+ /usr/lib/qt-3.3/include/qsize.h /usr/include/kde/kpixmap.h \
+ /usr/include/kde/kparts/dockmainwindow.h /usr/include/kde/kdockwidget.h \
+ /usr/lib/qt-3.3/include/qpoint.h /usr/lib/qt-3.3/include/qtabwidget.h \
+ /usr/include/kde/netwm_def.h /usr/include/kde/kparts/part.h \
+ /usr/include/kde/kxmlguiclient.h /usr/lib/qt-3.3/include/qrect.h \
+ ../qextmdi/include/qextmditaskbar.h /usr/lib/qt-3.3/include/qlabel.h \
+ /usr/lib/qt-3.3/include/qpushbutton.h /usr/lib/qt-3.3/include/qbutton.h \
+ ../qextmdi/include/qextmdidefines.h \
+ ../qextmdi/include/qextmdichildarea.h \
+ ../qextmdi/include/qextmdichildfrm.h \
+ /usr/lib/qt-3.3/include/qtoolbutton.h /usr/lib/qt-3.3/include/qdict.h \
+ /usr/lib/qt-3.3/include/qdatetime.h /usr/lib/qt-3.3/include/qlayout.h \
+ ../qextmdi/include/qextmdichildfrmcaption.h \
+ /usr/lib/qt-3.3/include/qwidget.h ../qextmdi/include/qextmdichildview.h \
+ ../qextmdi/include/qextmdiiterator.h \
+ ../qextmdi/include/qextmdilistiterator.h \
+ ../qextmdi/include/qextmdinulliterator.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/vector \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_construct.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_uninitialized.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_vector.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_bvector.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/vector.tcc \
+ DCOPxpertmud.h /usr/include/kde/dcopobject.h \
+ /usr/include/kde/kdatastream.h /usr/lib/qt-3.3/include/qdatastream.h \
+ scripting/GuiScriptingBindings.h ColorChar.h \
+ /usr/lib/qt-3.3/include/qcolor.h RegisterIface.h ConnectionHandler.h \
+ Connection.h /usr/include/kde/kextendedsocket.h \
+ /usr/include/kde/kextsock.h /usr/include/sys/time.h \
+ /usr/lib/qt-3.3/include/qiodevice.h /usr/include/kde/kbufferedio.h \
+ /usr/lib/qt-3.3/include/qcstring.h /usr/include/kde/kasyncio.h \
+ /usr/include/kde/ksockaddr.h InputStreamHandler.h CharSetParser.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/cassert \
+ /usr/include/assert.h Bookmark.h /usr/lib/qt-3.3/include/qvaluevector.h \
+ PluginWrapper.h /usr/lib/qt-3.3/include/qvariant.h TextBuffer.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/deque \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_deque.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/deque.tcc \
+ CtrlParser.h TextBufferView.h /usr/lib/qt-3.3/include/qfont.h \
+ TextBufferViewIface.h TextBufferHistoryView.h scripting/Scripting.h \
+ scripting/DCOPScripting.h mxinputline.h \
+ /usr/lib/qt-3.3/include/qtextedit.h \
+ /usr/lib/qt-3.3/include/qscrollview.h \
+ /usr/lib/qt-3.3/include/qscrollbar.h \
+ /usr/lib/qt-3.3/include/qrangecontrol.h \
+ /usr/lib/qt-3.3/include/qstylesheet.h \
+ /usr/lib/qt-3.3/include/qptrvector.h /usr/lib/qt-3.3/include/qgvector.h \
+ /usr/lib/qt-3.3/include/qdict.h \
+ /usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/iostream
+
+/usr/include/kde/klibloader.h:
+
+/usr/lib/qt-3.3/include/qobject.h:
+
+/usr/lib/qt-3.3/include/qobjectdefs.h:
+
+/usr/lib/qt-3.3/include/qglobal.h:
+
+/usr/lib/qt-3.3/include/qconfig.h:
+
+/usr/lib/qt-3.3/include/qmodules.h:
+
+/usr/lib/qt-3.3/include/qfeatures.h:
+
+/usr/lib/qt-3.3/include/qwindowdefs.h:
+
+/usr/lib/qt-3.3/include/qstring.h:
+
+/usr/lib/qt-3.3/include/qcstring.h:
+
+/usr/lib/qt-3.3/include/qmemarray.h:
+
+/usr/lib/qt-3.3/include/qgarray.h:
+
+/usr/lib/qt-3.3/include/qshared.h:
+
+/usr/lib/qt-3.3/include/qwinexport.h:
+
+/usr/include/string.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-32.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/include/stddef.h:
+
+/usr/include/xlocale.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/include/limits.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/include/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/bits/posix1_lim.h:
+
+/usr/include/bits/local_lim.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/bits/posix2_lim.h:
+
+/usr/include/bits/xopen_lim.h:
+
+/usr/include/bits/stdio_lim.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/string:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/c++config.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/os_defines.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/cpu_defines.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stringfwd.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/char_traits.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_algobase.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/functexcept.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/exception_defines.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/cpp_type_traits.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/ext/type_traits.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/ext/numeric_traits.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_pair.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/move.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/concept_check.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_iterator_base_types.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_iterator_base_funcs.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_iterator.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/debug/debug.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/postypes.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/cwchar:
+
+/usr/include/wchar.h:
+
+/usr/include/stdio.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/include/stdarg.h:
+
+/usr/include/bits/wchar.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/allocator.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/c++allocator.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/ext/new_allocator.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/new:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/exception:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/localefwd.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/c++locale.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/clocale:
+
+/usr/include/locale.h:
+
+/usr/include/bits/locale.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/iosfwd:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/cctype:
+
+/usr/include/ctype.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/endian.h:
+
+/usr/include/bits/endian.h:
+
+/usr/include/bits/byteswap.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/ostream_insert.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/cxxabi_forced.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_function.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/backward/binders.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/range_access.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/basic_string.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/ext/atomicity.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/gthr.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/gthr-default.h:
+
+/usr/include/pthread.h:
+
+/usr/include/sched.h:
+
+/usr/include/time.h:
+
+/usr/include/bits/sched.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/bits/timex.h:
+
+/usr/include/bits/pthreadtypes.h:
+
+/usr/include/bits/setjmp.h:
+
+/usr/include/unistd.h:
+
+/usr/include/bits/posix_opt.h:
+
+/usr/include/bits/environments.h:
+
+/usr/include/bits/confname.h:
+
+/usr/include/getopt.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/atomic_word.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/initializer_list:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/basic_string.tcc:
+
+/usr/lib/qt-3.3/include/qnamespace.h:
+
+/usr/lib/qt-3.3/include/qevent.h:
+
+/usr/lib/qt-3.3/include/qregion.h:
+
+/usr/lib/qt-3.3/include/qrect.h:
+
+/usr/lib/qt-3.3/include/qsize.h:
+
+/usr/lib/qt-3.3/include/qpoint.h:
+
+/usr/lib/qt-3.3/include/qmime.h:
+
+/usr/lib/qt-3.3/include/qmap.h:
+
+/usr/lib/qt-3.3/include/qdatastream.h:
+
+/usr/lib/qt-3.3/include/qiodevice.h:
+
+/usr/lib/qt-3.3/include/qpair.h:
+
+/usr/lib/qt-3.3/include/qvaluelist.h:
+
+/usr/lib/qt-3.3/include/qtl.h:
+
+/usr/lib/qt-3.3/include/qtextstream.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/bits/sys_errlist.h:
+
+/usr/include/bits/stdio.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/cstddef:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/iterator:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/ostream:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/ios:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/ios_base.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/locale_classes.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/locale_classes.tcc:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/streambuf:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/streambuf.tcc:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/basic_ios.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/locale_facets.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/cwctype:
+
+/usr/include/wctype.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/ctype_base.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/streambuf_iterator.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/i686-redhat-linux/bits/ctype_inline.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/locale_facets.tcc:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/basic_ios.tcc:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/ostream.tcc:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/istream:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/istream.tcc:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stream_iterator.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/list:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_list.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/list.tcc:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/map:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_tree.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_map.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_multimap.h:
+
+/usr/lib/qt-3.3/include/qstring.h:
+
+/usr/lib/qt-3.3/include/qstringlist.h:
+
+/usr/lib/qt-3.3/include/qstrlist.h:
+
+/usr/lib/qt-3.3/include/qptrlist.h:
+
+/usr/lib/qt-3.3/include/qglist.h:
+
+/usr/lib/qt-3.3/include/qptrcollection.h:
+
+/usr/lib/qt-3.3/include/qasciidict.h:
+
+/usr/lib/qt-3.3/include/qgdict.h:
+
+/usr/lib/qt-3.3/include/qptrlist.h:
+
+/usr/include/kde/kglobal.h:
+
+/usr/include/kde/kdelibs_export.h:
+
+/usr/include/kde/kdemacros.h:
+
+/usr/lib/qt-3.3/include/qglobal.h:
+
+/usr/include/kde/kinstance.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/bits/waitflags.h:
+
+/usr/include/bits/waitstatus.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/sys/select.h:
+
+/usr/include/bits/select.h:
+
+/usr/include/bits/sigset.h:
+
+/usr/include/sys/sysmacros.h:
+
+/usr/include/alloca.h:
+
+/usr/include/kde/klocale.h:
+
+/usr/include/kde/kdelibs_export.h:
+
+/usr/include/kde/kaudioplayer.h:
+
+xpertmud.h:
+
+../config.h:
+
+/usr/include/kde/kapplication.h:
+
+/usr/include/kde/kdeversion.h:
+
+/usr/lib/qt-3.3/include/qapplication.h:
+
+/usr/lib/qt-3.3/include/qdesktopwidget.h:
+
+/usr/lib/qt-3.3/include/qwidget.h:
+
+/usr/lib/qt-3.3/include/qobject.h:
+
+/usr/lib/qt-3.3/include/qpaintdevice.h:
+
+/usr/lib/qt-3.3/include/qpalette.h:
+
+/usr/lib/qt-3.3/include/qcolor.h:
+
+/usr/lib/qt-3.3/include/qstringlist.h:
+
+/usr/lib/qt-3.3/include/qbrush.h:
+
+/usr/lib/qt-3.3/include/qfont.h:
+
+/usr/lib/qt-3.3/include/qfontmetrics.h:
+
+/usr/lib/qt-3.3/include/qfontinfo.h:
+
+/usr/lib/qt-3.3/include/qsizepolicy.h:
+
+/usr/lib/qt-3.3/include/qasciidict.h:
+
+/usr/lib/qt-3.3/include/qtranslator.h:
+
+/usr/lib/qt-3.3/include/qpixmap.h:
+
+/usr/include/kde/kmainwindow.h:
+
+/usr/include/kde/kxmlguifactory.h:
+
+/usr/lib/qt-3.3/include/qdom.h:
+
+/usr/lib/qt-3.3/include/qvaluelist.h:
+
+/usr/include/kde/kxmlguiclient.h:
+
+/usr/lib/qt-3.3/include/qmap.h:
+
+/usr/include/kde/kxmlguibuilder.h:
+
+/usr/lib/qt-3.3/include/qmainwindow.h:
+
+/usr/lib/qt-3.3/include/qtoolbar.h:
+
+/usr/lib/qt-3.3/include/qdockwindow.h:
+
+/usr/lib/qt-3.3/include/qframe.h:
+
+/usr/lib/qt-3.3/include/qmetaobject.h:
+
+/usr/lib/qt-3.3/include/qconnection.h:
+
+/usr/include/kde/ktoolbar.h:
+
+/usr/lib/qt-3.3/include/qtoolbar.h:
+
+/usr/lib/qt-3.3/include/qcombobox.h:
+
+/usr/lib/qt-3.3/include/qguardedptr.h:
+
+/usr/lib/qt-3.3/include/qframe.h:
+
+/usr/lib/qt-3.3/include/qiconset.h:
+
+/usr/lib/qt-3.3/include/qpixmap.h:
+
+/usr/include/kde/kaction.h:
+
+/usr/lib/qt-3.3/include/qkeysequence.h:
+
+/usr/include/kde/kguiitem.h:
+
+/usr/include/kde/kicontheme.h:
+
+/usr/include/kde/kshortcut.h:
+
+/usr/include/kde/kstdaction.h:
+
+/usr/include/kde/kactioncollection.h:
+
+/usr/include/kde/kactionclasses.h:
+
+/usr/include/kde/kurl.h:
+
+../qextmdi/include/qextmdimainfrm.h:
+
+/usr/include/kde/kmenubar.h:
+
+/usr/lib/qt-3.3/include/qmenubar.h:
+
+/usr/lib/qt-3.3/include/qpopupmenu.h:
+
+/usr/lib/qt-3.3/include/qmenudata.h:
+
+/usr/lib/qt-3.3/include/qiconset.h:
+
+/usr/lib/qt-3.3/include/qkeysequence.h:
+
+/usr/lib/qt-3.3/include/qsignal.h:
+
+/usr/lib/qt-3.3/include/qvariant.h:
+
+/usr/include/kde/kpopupmenu.h:
+
+/usr/lib/qt-3.3/include/qpopupmenu.h:
+
+/usr/include/kde/kpixmapeffect.h:
+
+/usr/lib/qt-3.3/include/qsize.h:
+
+/usr/include/kde/kpixmap.h:
+
+/usr/include/kde/kparts/dockmainwindow.h:
+
+/usr/include/kde/kdockwidget.h:
+
+/usr/lib/qt-3.3/include/qpoint.h:
+
+/usr/lib/qt-3.3/include/qtabwidget.h:
+
+/usr/include/kde/netwm_def.h:
+
+/usr/include/kde/kparts/part.h:
+
+/usr/include/kde/kxmlguiclient.h:
+
+/usr/lib/qt-3.3/include/qrect.h:
+
+../qextmdi/include/qextmditaskbar.h:
+
+/usr/lib/qt-3.3/include/qlabel.h:
+
+/usr/lib/qt-3.3/include/qpushbutton.h:
+
+/usr/lib/qt-3.3/include/qbutton.h:
+
+../qextmdi/include/qextmdidefines.h:
+
+../qextmdi/include/qextmdichildarea.h:
+
+../qextmdi/include/qextmdichildfrm.h:
+
+/usr/lib/qt-3.3/include/qtoolbutton.h:
+
+/usr/lib/qt-3.3/include/qdict.h:
+
+/usr/lib/qt-3.3/include/qdatetime.h:
+
+/usr/lib/qt-3.3/include/qlayout.h:
+
+../qextmdi/include/qextmdichildfrmcaption.h:
+
+/usr/lib/qt-3.3/include/qwidget.h:
+
+../qextmdi/include/qextmdichildview.h:
+
+../qextmdi/include/qextmdiiterator.h:
+
+../qextmdi/include/qextmdilistiterator.h:
+
+../qextmdi/include/qextmdinulliterator.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/vector:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_construct.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_uninitialized.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_vector.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_bvector.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/vector.tcc:
+
+DCOPxpertmud.h:
+
+/usr/include/kde/dcopobject.h:
+
+/usr/include/kde/kdatastream.h:
+
+/usr/lib/qt-3.3/include/qdatastream.h:
+
+scripting/GuiScriptingBindings.h:
+
+ColorChar.h:
+
+/usr/lib/qt-3.3/include/qcolor.h:
+
+RegisterIface.h:
+
+ConnectionHandler.h:
+
+Connection.h:
+
+/usr/include/kde/kextendedsocket.h:
+
+/usr/include/kde/kextsock.h:
+
+/usr/include/sys/time.h:
+
+/usr/lib/qt-3.3/include/qiodevice.h:
+
+/usr/include/kde/kbufferedio.h:
+
+/usr/lib/qt-3.3/include/qcstring.h:
+
+/usr/include/kde/kasyncio.h:
+
+/usr/include/kde/ksockaddr.h:
+
+InputStreamHandler.h:
+
+CharSetParser.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/cassert:
+
+/usr/include/assert.h:
+
+Bookmark.h:
+
+/usr/lib/qt-3.3/include/qvaluevector.h:
+
+PluginWrapper.h:
+
+/usr/lib/qt-3.3/include/qvariant.h:
+
+TextBuffer.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/deque:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/stl_deque.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/bits/deque.tcc:
+
+CtrlParser.h:
+
+TextBufferView.h:
+
+/usr/lib/qt-3.3/include/qfont.h:
+
+TextBufferViewIface.h:
+
+TextBufferHistoryView.h:
+
+scripting/Scripting.h:
+
+scripting/DCOPScripting.h:
+
+mxinputline.h:
+
+/usr/lib/qt-3.3/include/qtextedit.h:
+
+/usr/lib/qt-3.3/include/qscrollview.h:
+
+/usr/lib/qt-3.3/include/qscrollbar.h:
+
+/usr/lib/qt-3.3/include/qrangecontrol.h:
+
+/usr/lib/qt-3.3/include/qstylesheet.h:
+
+/usr/lib/qt-3.3/include/qptrvector.h:
+
+/usr/lib/qt-3.3/include/qgvector.h:
+
+/usr/lib/qt-3.3/include/qdict.h:
+
+/usr/lib/gcc/i686-redhat-linux/4.6.1/../../../../include/c++/4.6.1/iostream:
